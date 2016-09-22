@@ -15,14 +15,14 @@
     <body>
         <h2>Previewing multiple image before uploading them</h2>
         <form action="upload.htm" method="post" enctype="multipart/form-data">
-          <input accept="image/*" type="file" id="imageSelector" multiple="multiple">
+          <input accept="image/*" type="file" id="singleImageSelector">
+          <input accept="image/*" type="file" id="multipleImageSelector" multiple="multiple">
         </form>
         <div id="preview"></div>
         <script>
             (function() {
-                let inputTag = document.getElementById('imageSelector');
                 let previewDiv = document.getElementById('preview');
-                inputTag.onchange = function(input) {
+                function previewImage(input) {
                     images = input.target.files;
                     console.log(`Selected ${images.length} images`);
                     for (let i = 0; i < images.length; i++) {
@@ -38,7 +38,14 @@
                         reader.readAsDataURL(imageFile);
                     }
                 }
-                ;
+
+                let selectorIds = ['singleImageSelector', 'multipleImageSelector'];
+                for(let i = 0; i < selectorIds.length; i++ ) {
+                    let selectorId = selectorIds[i];
+                    console.log(`Decorating ${selectorId}`);
+                    let inputTag = document.getElementById(selectorId);
+                    inputTag.onchange = previewImage;
+                }
             })();
         </script>
     </body>
