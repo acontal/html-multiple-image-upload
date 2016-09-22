@@ -1,1 +1,13 @@
-<h1>Hello!</h1>
+<!doctype html>
+<html>
+  <head>
+    <title>Testing multiple photo upload</title>
+  </head>
+  <body>
+    <h1>Hello!</h1>
+    <form method="post" enctype="multipart/form-data">
+      <input accept="image/*" type="file" name="file1" id="file1" multiple>
+      <input type="submit" value="Upload">
+    </form>
+  </body>
+</html>
