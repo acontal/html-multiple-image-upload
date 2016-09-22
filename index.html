@@ -14,7 +14,9 @@
     </head>
     <body>
         <h2>Previewing multiple image before uploading them</h2>
-        <input accept="image/*" type="file" id="imageSelector" multiple>
+        <form action="upload.htm" method="post" enctype="multipart/form-data">
+          <input accept="image/*" type="file" id="imageSelector" multiple>
+        </form>
         <div id="preview"></div>
         <script>
             (function() {
