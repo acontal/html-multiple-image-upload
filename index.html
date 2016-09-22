@@ -1,13 +1,43 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Testing multiple photo upload</title>
-  </head>
-  <body>
-    <h1>Hello!</h1>
-    <form method="post" enctype="multipart/form-data">
-      <input accept="image/*" type="file" name="file1" id="file1" multiple>
-      <input type="submit" value="Upload">
-    </form>
-  </body>
+    <head>
+        <title>html-multiple-image-upload</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .thumb-image {
+                float: left;
+                height: 100px;
+                position: relative;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Previewing multiple image before uploading them</h2>
+        <input accept="image/*" type="file" id="imageSelector" multiple>
+        <div id="preview"></div>
+        <script>
+            (function() {
+                let inputTag = document.getElementById('imageSelector');
+                let previewDiv = document.getElementById('preview');
+                inputTag.onchange = function(input) {
+                    images = input.target.files;
+                    console.log(`Selected ${images.length} images`);
+                    for (let i = 0; i < images.length; i++) {
+                        let imageFile = images[i];
+                        let reader = new FileReader();
+                        reader.onload = function(e) {
+                            console.log(`FileReader has finished loading ${imageFile.name}`);
+                            let imgTag = document.createElement('img');
+                            imgTag.src = e.target.result;
+                            imgTag.className = 'thumb-image';
+                            previewDiv.appendChild(imgTag);
+                        }
+                        reader.readAsDataURL(imageFile);
+                    }
+                }
+                ;
+            })();
+        </script>
+    </body>
 </html>
