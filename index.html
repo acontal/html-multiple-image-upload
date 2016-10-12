@@ -27,6 +27,7 @@
                     console.log(`Selected ${images.length} images`);
                     for (let i = 0; i < images.length; i++) {
                         let imageFile = images[i];
+                        console.log(`Image #${i}: ${imageFile.name}`);
                         let reader = new FileReader();
                         reader.onload = function(e) {
                             console.log(`FileReader has finished loading ${imageFile.name}`);
@@ -42,7 +43,7 @@
                 let selectorIds = ['singleImageSelector', 'multipleImageSelector'];
                 for(let i = 0; i < selectorIds.length; i++ ) {
                     let selectorId = selectorIds[i];
-                    console.log(`Decorating ${selectorId}`);
+                    console.log(`Hooking onchange listener on tag #${selectorId}`);
                     let inputTag = document.getElementById(selectorId);
                     inputTag.onchange = previewImage;
                 }
